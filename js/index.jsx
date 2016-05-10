@@ -1,13 +1,18 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var TrelloCard = function() {
-    var text = 'Not Derek Zoolander';
+var TrelloCard = function(props) {
     return (
         <li className="card">
-            <div className="card-text">{text}</div>
+            <div className="card-image"><img src={props.image} /></div>
+            <div className="card-text">{props.text}</div>
         </li>
     );
+};
+
+TrelloCard.defaultProps = {
+    text: 'Meekus',
+    image: 'http://www-cs-faculty.stanford.edu/~uno/don.gif'
 };
 
 var TrelloList = function() {
