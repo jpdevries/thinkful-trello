@@ -20,7 +20,7 @@ module.exports = {
     devtool: 'source-map',
     module: {
         loaders: [{
-            test: /\.js$/,
+            test: /\.jsx?$/,
             exclude: /(node_modules)/,
             loader: 'babel',
             query: {
@@ -30,6 +30,6 @@ module.exports = {
     },
     plugins: plugins,
     resolve: {
-        extensions: ['', 'js', 'jsx']
+        extensions: ['', '.js', '.jsx']
     }
 };
