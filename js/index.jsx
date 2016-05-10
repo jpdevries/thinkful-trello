@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var TrelloCard = function () {
+var TrelloCard = function() {
     var text = 'Not Derek Zoolander';
     return (
         <li className="card">
@@ -10,23 +10,23 @@ var TrelloCard = function () {
     );
 };
 
-var TrelloList = function () {
+var TrelloList = function() {
     return (
         <ul>
-            <TrelloCard />
-            <TrelloCard />
-            <TrelloCard />
-            <TrelloCard />
+            <TrelloCard/>
+            <TrelloCard/>
+            <TrelloCard/>
+            <TrelloCard/>
         </ul>
     );
 };
 
-var TrelloBoard = function () {
+var TrelloBoard = function() {
     return (
         <div>
-            <TrelloList />
-            <TrelloList />
-            <TrelloList />
+            <TrelloList/>
+            <TrelloList/>
+            <TrelloList/>
         </div>
     );
 };
@@ -74,7 +74,7 @@ var TrelloBoard = function () {
 //    imageUrl: 'http://www.gravatar.com/avatar/?d=identicon'
 //};
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
-        <TrelloBoard />, document.getElementById('app'));
+        <TrelloBoard/>, document.getElementById('app'));
 });
