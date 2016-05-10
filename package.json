@@ -29,7 +29,6 @@
     "babel-preset-react": "^6.5.0",
     "chokidar-cli": "^1.2.0",
     "clean-css": "^3.4.12",
-    "http-server": "^0.9.0",
     "less": "^2.7.1",
     "uglify-js": "^2.6.2",
     "webpack": "^1.13.0"
