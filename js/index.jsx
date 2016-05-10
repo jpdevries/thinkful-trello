@@ -34,7 +34,7 @@ var PersonList = function() {
         <div className="person-list">
             <Person name="Derek Zoolander" imageUrl="http://uifaces.com/assets/static/images/zoolander.jpg" job="Male model"/>
             <Person name="Donald Knuth" imageUrl="http://www-cs-faculty.stanford.edu/~uno/don.gif" job="Clever chap"/>
-            <Person name="Donald Knuth" job="Clever chap"/>
+            <Person name="Willy Wonka" imageUrl="https://s-media-cache-ak0.pinimg.com/favicons/758e0863abf72b9d780f8a4ef74a20496487dcdd80ca5d1d51ddd6f6.png?800153a7aff313b566d38d9e06e1ca38" job="Candy Maker/Children Killer?"/>
         </div>
     );
 };
