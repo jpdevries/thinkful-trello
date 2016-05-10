@@ -33,6 +33,7 @@ var TrelloList = function(props) {
     // var cardArray = [TrelloCard(image, text), ]
     return (
         <ul>
+            <h2>{props.list.title}</h2>
             <TrelloCard/>
             <TrelloCard/>
             <TrelloCard/>
