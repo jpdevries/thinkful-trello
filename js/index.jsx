@@ -5,39 +5,39 @@ var data = {
     title: 'Knüth-Büth',
     lists: [
         {
-            title: 'List 1 title',
-            cards: ['Card 1', 'Card 2', 'Card 3']
+            title: 'Geriatric Hannibal',
+            cards: ['Hello, Clarice', 'How are you', 'Fine thanks']
         },
         {
-            title: 'List 2 title',
-            cards: ['Card 1', 'Card 2', 'Card 3']
+            title: 'Numbers',
+            cards: ['Ein', 'Zwei', 'Drei']
         }
     ]
-}
+};
 
 var TrelloCard = function(props) {
+    //console.log(props);
     return (
         <li className="card">
             <div className="card-image"><img src={props.image} /></div>
-            <div className="card-text">{props.text}</div>
+            <div className="card-text">{props.card}</div>
         </li>
     );
 };
 
 TrelloCard.defaultProps = {
-    text: 'Hello...Clarice :)',
     image: 'http://www-cs-faculty.stanford.edu/~uno/don.gif'
 };
 
 var TrelloList = function(props) {
-    // var cardArray = [TrelloCard(image, text), ]
+    var cards = [];
+    for (var i = 0; i < 3; i += 1) {
+        cards.push(<TrelloCard card={props.list.cards[i]} />)
+    }
     return (
         <ul>
             <h2>{props.list.title}</h2>
-            <TrelloCard/>
-            <TrelloCard/>
-            <TrelloCard/>
-            <TrelloCard/>
+            {cards}
         </ul>
     );
 };
