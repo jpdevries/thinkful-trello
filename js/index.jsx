@@ -7,11 +7,13 @@ var TrelloApp = React.createClass({
             title: 'Knüth-Büth',
             lists: [
                 {
+                    id: '0',
                     title: 'Geriatric Hannibal',
                     cards: ['Hello, Clarice', 'How are you', 'Fine thanks'],
                     typed: ''
                 },
                 {
+                    id: '1',
                     title: 'Numbers',
                     cards: ['Ein', 'Zwei', 'Drei'],
                     typed: ''
@@ -29,10 +31,11 @@ var TrelloApp = React.createClass({
         });
     },
     onSubmit: function (event) {
+        console.log('asd')
         event.preventDefault();
-        console.log(event);
+        var index = event.target.id;
         var newList = this.state.lists.slice();
-        newList[0].cards.push(this.state.lists[0].typed);
+        newList[index].cards.push(this.state.lists[index].typed);
         this.setState({
             lists: newList
         });
@@ -49,7 +52,7 @@ var TrelloApp = React.createClass({
 var TrelloBoard = function(props) {
     var trelloLists = [];
     for (var i=0; i < props.board.lists.length; i++) {
-      trelloLists.push(<TrelloList list={props.board.lists[i]} onSubmit={props.onSubmit} onChange={props.onChange} key={i}/>);
+      trelloLists.push(<TrelloList list={props.board.lists[i]} onSubmit={props.onSubmit} onChange={props.onChange} />);
     }
     return (
       <div className="list">
@@ -63,7 +66,7 @@ var TrelloBoard = function(props) {
 var TrelloList = function(props) {
     var cards = [];
     for (var i = 0; i < props.list.cards.length; i += 1) {
-        cards.push(<TrelloCard card={props.list.cards[i]} key = {i}/>)
+        cards.push(<TrelloCard card={props.list.cards[i]}/>)
     }
     return (
         <div>
@@ -71,7 +74,7 @@ var TrelloList = function(props) {
               <h2>{props.list.title}</h2>
               {cards}
           </ul>
-          <form onSubmit={props.onSubmit}>
+          <form id={props.list.id} onSubmit={props.onSubmit}>
             <Input onChange={props.onChange} />
             <Button text="Ready to be amazed?" />
           </form>
