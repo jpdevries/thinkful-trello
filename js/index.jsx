@@ -19,17 +19,18 @@ var TrelloApp = React.createClass({
           };
     },
     onChange: function(event) {
+        console.log('changed!');
         this.setState({
             typed: event.target.value
         });
     },
     onSubmit: function (event) {
         event.preventDefault();
-        alert('yay!');
+        alert(this.state.typed);
     },
     render: function() {
       return (
-        <TrelloBoard board={this.state} onSubmit={this.onSubmit} />
+        <TrelloBoard board={this.state} onSubmit={this.onSubmit} onChange={this.onChange} />
       );
     }
 });
@@ -37,7 +38,7 @@ var TrelloApp = React.createClass({
 var TrelloBoard = function(props) {
     var trelloLists = [];
     for (var i=0; i < props.board.lists.length; i++) {
-      trelloLists.push(<TrelloList list={props.board.lists[i]} onSubmit={props.onSubmit}/>);
+      trelloLists.push(<TrelloList list={props.board.lists[i]} onSubmit={props.onSubmit} onChange={props.onChange}/>);
     }
     return (
       <div className="list">
@@ -49,7 +50,6 @@ var TrelloBoard = function(props) {
 };
 
 var TrelloList = function(props) {
-    console.log(props);
     var cards = [];
     for (var i = 0; i < 3; i += 1) {
         cards.push(<TrelloCard card={props.list.cards[i]} />)
@@ -82,7 +82,7 @@ var Button = function(props) {
 };
 
 var Input = function(props) {
-  return <input type='text' />
+  return <input type='text' onChange={props.onChange} />
 };
 
 TrelloCard.defaultProps = {
