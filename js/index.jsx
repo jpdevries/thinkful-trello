@@ -1,22 +1,21 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
-var data = {
-    title: 'Knüth-Büth',
-    lists: [
-        {
-            title: 'Geriatric Hannibal',
-            cards: ['Hello, Clarice', 'How are you', 'Fine thanks']
-        },
-        {
-            title: 'Numbers',
-            cards: ['Ein', 'Zwei', 'Drei']
-        }
-    ]
-};
+// var data = {
+//     title: 'Knüth-Büth',
+//     lists: [
+//         {
+//             title: 'Geriatric Hannibal',
+//             cards: ['Hello, Clarice', 'How are you', 'Fine thanks']
+//         },
+//         {
+//             title: 'Numbers',
+//             cards: ['Ein', 'Zwei', 'Drei']
+//         }
+//     ]
+// };
 
 var TrelloCard = function(props) {
-    //console.log(props);
     return (
         <li className="card">
             <div className="card-image"><img src={props.image} /></div>
@@ -42,34 +41,49 @@ var TrelloList = function(props) {
     );
 };
 
-var TrelloBoard = React.createClass({
-  getInitialState: function() {
-        return {
-            highlight: false
-        };
-    },
-    onClick: function() {
-        this.setState({
-            highlight: !this.state.highlight
-        });
-    },
-  render: function() {
+var TrelloBoard = function(props) {
     var trelloLists = [];
-    for (var i=0; i < this.props.data.lists.length; i++) {
-      trelloLists.push(<TrelloList list={this.props.data.lists[i]}/>);
+    for (var i=0; i < props.board.lists.length; i++) {
+      trelloLists.push(<TrelloList list={props.board.lists[i]}/>);
     }
     return (
       <div className="list">
-        <h1>{this.props.data.title}</h1>
+        <h1>{props.board.title}</h1>
         {trelloLists}
 
       </div>
     );
+};
 
-  }
-});
+var TrelloApp = React.createClass({
+  getInitialState: function() {
+        return {
+          title: 'Knüth-Büth',
+          lists: [
+              {
+                  title: 'Geriatric Hannibal',
+                  cards: ['Hello, Clarice', 'How are you', 'Fine thanks']
+              },
+              {
+                  title: 'Numbers',
+                  cards: ['Ein', 'Zwei', 'Drei']
+              }
+          ]
+        };
+    },
+    onSubmit: function() {
+        this.setState({
+            //adds a card
+        });
+    },
+    render: function() {
+      return (
+        <TrelloBoard board={this.state} />
+      )
+    }
+})
 
 document.addEventListener('DOMContentLoaded', function() {
     ReactDOM.render(
-        <TrelloBoard data={data}/>, document.getElementById('app'));
+        <TrelloApp />, document.getElementById('app'));
 });
