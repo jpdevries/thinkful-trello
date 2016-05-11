@@ -23,9 +23,14 @@ var TrelloApp = React.createClass({
             typed: event.target.value
         });
     },
+
+    onSubmit: function (event) {
+        event.preventDefault();
+        alert('yay!');
+    },
     render: function() {
       return (
-        <TrelloBoard board={this.state} />
+        <TrelloBoard board={this.state} onSubmit={this.onSubmit} />
       );
     }
 });
@@ -33,7 +38,7 @@ var TrelloApp = React.createClass({
 var TrelloBoard = function(props) {
     var trelloLists = [];
     for (var i=0; i < props.board.lists.length; i++) {
-      trelloLists.push(<TrelloList list={props.board.lists[i]}/>);
+      trelloLists.push(<TrelloList list={props.board.lists[i]} onSubmit={props.onSubmit}/>);
     }
     return (
       <div className="list">
@@ -45,6 +50,7 @@ var TrelloBoard = function(props) {
 };
 
 var TrelloList = function(props) {
+    console.log(props);
     var cards = [];
     for (var i = 0; i < 3; i += 1) {
         cards.push(<TrelloCard card={props.list.cards[i]} />)
@@ -55,9 +61,10 @@ var TrelloList = function(props) {
               <h2>{props.list.title}</h2>
               {cards}
           </ul>
-
-          <Input onChange={props.onChange} />
-          <Button onSubmit={props.onSubmit} text="Ready to be amazed?" />
+          <form onSubmit={props.onSubmit}>
+            <Input onChange={props.onChange} />
+            <Button text="Ready to be amazed?" />
+          </form>
         </div>
     );
 };
@@ -72,12 +79,12 @@ var TrelloCard = function(props) {
 };
 
 var Button = function(props) {
-  return <button type='submit' onSubmit={props.onClick}>{props.text}</button>;
+  return <button type='submit'>{props.text}</button>;
 };
 
 var Input = function(props) {
   return <input type='text' />
-}
+};
 
 TrelloCard.defaultProps = {
     image: 'http://www-cs-faculty.stanford.edu/~uno/don.gif'
