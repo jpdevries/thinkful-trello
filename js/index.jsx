@@ -23,7 +23,6 @@ var TrelloApp = React.createClass({
             typed: event.target.value
         });
     },
-
     onSubmit: function (event) {
         event.preventDefault();
         alert('yay!');
