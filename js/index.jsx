@@ -22,8 +22,8 @@ var TrelloApp = React.createClass({
             //typed: ''
           };
     },
-    onChange: function(event) {
-        var index = parseInt(event.target.parentNode.getAttribute('id'));
+    onChange: function(index,event) {
+        //var index = parseInt(event.target.parentNode.getAttribute('id'));
         var newTyped = this.state.lists.slice();
         newTyped[index].typed = event.target.value;
 
@@ -53,7 +53,8 @@ var TrelloApp = React.createClass({
 var TrelloBoard = function(props) {
     var trelloLists = [];
     for (var i=0; i < props.board.lists.length; i++) {
-      trelloLists.push(<TrelloList key={i} index={i} list={props.board.lists[i]} onSubmit={props.onSubmit} onChange={props.onChange} />);
+      trelloLists.push(<TrelloList key={i} list={props.board.lists[i]} onSubmit={props.onSubmit} onChange={props.onChange.bind(null, i)} />);
+      //trelloLists.push(<TrelloList key={i} index={i} list={props.board.lists[i]} onSubmit={props.onSubmit} onChange={props.onChange} />);
     }
     return (
       <div className="list">
